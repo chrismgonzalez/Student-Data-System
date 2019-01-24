@@ -1,12 +1,8 @@
-#include "pch.h"
 #include "networkStudent.h"
 
 
-networkStudent::networkStudent()
+Degree networkStudent::getDegreeProgram()
 {
+	return DegreeType;
 }
 
-
-networkStudent::~networkStudent()
-{
-}

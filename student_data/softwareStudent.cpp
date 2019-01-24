@@ -1,12 +1,7 @@
-#include "pch.h"
 #include "softwareStudent.h"
 
 
-softwareStudent::softwareStudent()
+Degree softwareStudent::getDegreeProgram()
 {
-}
-
-
-softwareStudent::~softwareStudent()
-{
+	return DegreeType;
 }

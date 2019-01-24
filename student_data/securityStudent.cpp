@@ -1,12 +1,7 @@
-#include "pch.h"
 #include "securityStudent.h"
 
 
-securityStudent::securityStudent()
+Degree securityStudent::getDegreeProgram()
 {
-}
-
-
-securityStudent::~securityStudent()
-{
+	return DegreeType;
 }

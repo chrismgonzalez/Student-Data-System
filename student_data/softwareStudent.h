@@ -1,8 +1,15 @@
-#pragma once
-class softwareStudent
-{
+#ifndef SOFTWARE_H
+#define SOFTWARE_H
+
+#include "student.h"
+
+class softwareStudent : public Student {
 public:
-	softwareStudent();
-	~softwareStudent();
+	virtual Degree getDegreeProgram();
+	using Student::Student;
+private:
+	Degree DegreeType = SOFTWARE;
 };
+
+#endif
 
