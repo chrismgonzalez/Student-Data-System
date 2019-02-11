@@ -1,12 +1,10 @@
 #include "pch.h"
 #include "student.h"
 
-
-student::student()
+Student::Student(string studentId, string firstName, stringLastName, string email, int age, int * daysToCompleteCourse, Degree::DegreeType degree)
 {
 }
 
-
-student::~student()
+Student::~student()
 {
 }

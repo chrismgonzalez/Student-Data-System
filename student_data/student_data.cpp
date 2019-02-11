@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "student.h"
-#using namespace std;
+using std::cout;
+using std::string;
+using std::endl;
 
 //call all functions in this file
 //call all console output in this file
 //print function to display console data
-}
 
 int main()
 {

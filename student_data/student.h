@@ -1,46 +1,49 @@
-#ifndef STUDENT_H
-#define STUDENT_H
-
-#include <iostream>
-#include <string>
+#pragma once
+using std::string;
 #include "degree.h"
 
-using namespace std;
-
 class Student {
-	public:
-		//getters 
-		string getStudentId();
-		string getFirstName();
-		string getLastName();
-		string getEmail();
-		int getAge();
-		int *getDaysInCourse();
-		Degree getDegreeType();
-		//setters
-		void setStudentId(string);
-		void setFirstName(string);
-		void setLastName(string);
-		void setEmail(string);
-		void setAge(int);
-		void setDaysInCourse(int[3]);
-		void setDegreeType(Degree);
+private:
+	string studentId;
+	string firstName;
+	string lastName;
+	string email;
+	string degreeProgram;
+	Degree::DegreeType degree;
+	int age;
+	int daysToCompleteCourse[3];
 
-		//other methods
-		virtual Degree getDegreeProgram();
-		virtual void print();
-		//constructor
-		Student(string, string, string, string, int, int*, Degree);
-		//destructor
-		~Student();
+public:
+	//constructor
+	Student(string studentId, string firstName, stringLastName, string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
 
-	private:
-		string StudentId, FirstName, LastName, Email;
-		int Age, DaysInCourse[3];
-		Degree DegreeType;
-	
+	//destructor
+	~student();
+
+	//getters
+	string getStudentId();
+	string getFirstName();
+	string getlastName();
+	string getEmail();
+	string getDegreeProgram();
+	int getAge();
+	int *getDaysToCompleteCourse();
+
+	//setters
+
+	void setStudentId(string studentId);
+	void setFirstName(string firstName);
+	void setLastName(string lastName);
+	void setEmail(string email);
+	void setAge(int age);
+	void setDegreeProgram(Degree::DegreeType degree);
+	void setDaysToCompleteCourse(int*);
+	void resetStudent();
+
+	virtual Degree::DegreeType getDegreeProgram();
+	virtual void print();
 };
 
-#endif
+
 
 

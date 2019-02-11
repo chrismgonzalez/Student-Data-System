@@ -1,14 +1,10 @@
 #include "pch.h"
 #include "roster.h"
+using std::string;
 
 int main() {
 
-
-
-
-
-
-	roster classRoster; 
+	roster classRoster;
 
 	const string studentData[] =
 	{
@@ -19,13 +15,15 @@ int main() {
 		"A5,Chris,Gonzalez,cmgonza89@gmail.com,29,20,25,30,SOFTWARE"
 	};
 
-roster::roster()
-{
+	roster::roster()
+	{
 
-}
+	};
 
 
-roster::~roster()
-{
-	//delete the roste array
+	roster::~roster()
+	{
+		//delete the roster array
+	};
+
 }
