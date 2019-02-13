@@ -1,15 +1,14 @@
-#ifndef SOFTWARE_H
-#define SOFTWARE_H
-
+#pragma once
+#include <string>
 #include "student.h"
+#include "degree.h"
 
-class softwareStudent : public Student {
+class SoftwareStudent : public Student {
 public:
-	virtual Degree getDegreeProgram();
-	using Student::Student;
-private:
-	Degree DegreeType = SOFTWARE;
-};
+	SoftwareStudent(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse)
+		Degree::DegreeType getDegreeProgram() override;
 
-#endif
+private:
+	Degree::DegreeType degreeType;
+};
 
