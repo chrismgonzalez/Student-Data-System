@@ -1,17 +1,16 @@
-#ifndef NETWORK_H
-#define NETWORK_H
-
+#pragma once
+#include <string>
 #include "student.h"
+#include "degree.h"
 
-class networkStudent : public Student {
+class NetworkStudent : public Student {
 public:
-	virtual Degree getDegreeProgram();
-	using Student::Student;
-private:
-	Degree DegreeType = NETWORKING;
-};
+	NetworkStudent(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse)
+		Degree::DegreeType getDegreeProgram() override;
 
-#endif
+private:
+	Degree::DegreeType degreeType;
+};
 
 
 

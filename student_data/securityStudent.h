@@ -1,15 +1,15 @@
-#ifndef SECURITY_H
-#define SECURITY_H
-
+#pragma once
+#include <string>
 #include "student.h"
+#include "degree.h"
 
-class securityStudent : public Student {
+class SecurityStudent : public Student {
 public:
-	virtual Degree getDegreeProgram();
-	using Student::Student;
+	SecurityStudent(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse)
+	Degree::DegreeType getDegreeProgram() override;
+
 private:
-	Degree DegreeType = SECURITY;
+	Degree::DegreeType degreeType;
 };
 
-#endif
 

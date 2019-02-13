@@ -1,5 +1,5 @@
 #pragma once
-using std::string;
+using namespace std;
 #include "degree.h"
 
 class Student {
@@ -15,17 +15,17 @@ private:
 
 public:
 	//constructor
-	Student(string studentId, string firstName, stringLastName, string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
+	Student(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
 
 	//destructor
-	~student();
+	~Student();
 
 	//getters
 	string getStudentId();
 	string getFirstName();
 	string getlastName();
 	string getEmail();
-	string getDegreeProgram();
+	string getDegreeProgramString();
 	int getAge();
 	int *getDaysToCompleteCourse();
 

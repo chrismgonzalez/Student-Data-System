@@ -4,6 +4,6 @@ class Degree {
 public: 
 	enum DegreeType
 	{
-		SECURITY, NETWORKING, SOFTWARE, OTHER
+		SECURITY, NETWORK, SOFTWARE, OTHER
 	};
 };
