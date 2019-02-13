@@ -5,7 +5,7 @@
 
 class SecurityStudent : public Student {
 public:
-	SecurityStudent(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse)
+	SecurityStudent(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse);
 	Degree::DegreeType getDegreeProgram() override;
 
 private:

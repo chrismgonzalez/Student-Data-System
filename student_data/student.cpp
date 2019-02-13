@@ -3,6 +3,7 @@
 #include <string>
 #include "degree.h"
 #include "student.h"
+using namespace std;
 
 Student::Student(string studentId, std::string firstName, std::string lastName, std::string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree)
 {
@@ -12,7 +13,7 @@ Student::Student(string studentId, std::string firstName, std::string lastName, 
 	this->setEmail(email);
 	this->setAge(age);
 	this->setDaysToCompleteCourse(daysToCompleteCourse);
-	this->setDegreeProgram(degree);
+	this->setDegreeProgramString(degree);
 }
 
 Student::~Student()
@@ -39,8 +40,8 @@ void Student::setAge(int age) {
 	this->age = age;
 }
 
-void Student::setDegreeProgram(Degree::DegreeType degree) {
-	this->degreeProgram = degree;
+void Student::setDegreeProgramString(Degree::DegreeType degree) {
+	this->degreeProgramString = degree;
 
 	switch (degree)
 	{
@@ -67,7 +68,7 @@ void Student::setDegreeProgram(Degree::DegreeType degree) {
 }
 
 void Student::setDaysToCompleteCourse(int *daysToCompleteCourse) {
-	for (int i = 0, i < 3, i++) {
+	for (int i = 0; i < 3; i++) {
 		this->daysToCompleteCourse[i] = daysToCompleteCourse[i];
 	}
 }
@@ -80,7 +81,7 @@ string Student::getFirstName() {
 	return this->firstName;
 }
 
-string Student::getlastName() {
+string Student::getLastName() {
 	return this->lastName;
 }
 
@@ -89,7 +90,7 @@ string Student::getEmail() {
 }
 
 string Student::getDegreeProgramString() {
-	return this->degreeProgram;
+	return this->degreeProgramString;
 }
 
 int Student::getAge() {
@@ -100,7 +101,7 @@ int *Student::getDaysToCompleteCourse() {
 }
 
 Degree::DegreeType Student::getDegreeProgram() {
-	return Degree::NONE;
+	return Degree::OTHER;
 }
 
 void Student::print() {
@@ -112,7 +113,7 @@ void Student::print() {
 	cout << "Student Last Name: " << getLastName() << "\t";
 	cout << "Student Age: " << getAge() << "\t";
 	cout << "\t Days in each enrolled course: " << days[0] << "," << days[1] << "," << days[2] << "\t";
-	cout << "Student Degree Program: " << getDegreeProgram();
+	cout << "Student Degree Program: " << getDegreeProgramString();
 	cout << endl;
 }
 

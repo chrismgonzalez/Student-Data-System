@@ -3,7 +3,7 @@
 #include "student.h"
 #include "degree.h"
 #include <sstream>
-using namespace std
+using namespace std;
 
 const string studentData[] = {
 		"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -37,6 +37,8 @@ public:
 private:
 	Student* classRosterArray[maxStudentsOnRoster]; //consider changing syntax
 };
+
+int main();
 
 
 

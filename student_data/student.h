@@ -1,6 +1,7 @@
 #pragma once
-using namespace std;
+#include <string>
 #include "degree.h"
+using std::string;
 
 class Student {
 private:
@@ -8,14 +9,14 @@ private:
 	string firstName;
 	string lastName;
 	string email;
-	string degreeProgram;
+	string degreeProgramString;
 	Degree::DegreeType degree;
 	int age;
 	int daysToCompleteCourse[3];
 
 public:
 	//constructor
-	Student(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
+	Student(string studentId, string firstName, string lastName, string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
 
 	//destructor
 	~Student();
@@ -23,7 +24,7 @@ public:
 	//getters
 	string getStudentId();
 	string getFirstName();
-	string getlastName();
+	string getLastName();
 	string getEmail();
 	string getDegreeProgramString();
 	int getAge();
@@ -36,7 +37,7 @@ public:
 	void setLastName(string lastName);
 	void setEmail(string email);
 	void setAge(int age);
-	void setDegreeProgram(Degree::DegreeType degree);
+	void setDegreeProgramString(Degree::DegreeType degree);
 	void setDaysToCompleteCourse(int*);
 	void resetStudent();
 
