@@ -5,12 +5,12 @@
 #include "student.h"
 using namespace std;
 
-Student::Student(string studentId, std::string firstName, std::string lastName, std::string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree)
+Student::Student(string studentId, std::string firstName, std::string lastName, std::string emailAddress, int age, int *daysToCompleteCourse, Degree::DegreeType degree)
 {
 	this->setStudentId(studentId);
 	this->setFirstName(firstName);
 	this->setLastName(lastName);
-	this->setEmail(email);
+	this->setEmail(emailAddress);
 	this->setAge(age);
 	this->setDaysToCompleteCourse(daysToCompleteCourse);
 	this->setDegreeProgramString(degree);
@@ -33,7 +33,7 @@ void Student::setLastName(string lastName) {
 }
 
 void Student::setEmail(string email) {
-	this->email;
+	this->emailAddress;
 }
 
 void Student::setAge(int age) {
@@ -86,7 +86,7 @@ string Student::getLastName() {
 }
 
 string Student::getEmail() {
-	return this->email;
+	return this->emailAddress;
 }
 
 string Student::getDegreeProgramString() {

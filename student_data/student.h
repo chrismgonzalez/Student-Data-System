@@ -8,7 +8,7 @@ private:
 	string studentId;
 	string firstName;
 	string lastName;
-	string email;
+	string emailAddress;
 	string degreeProgramString;
 	Degree::DegreeType degree;
 	int age;
@@ -16,7 +16,7 @@ private:
 
 public:
 	//constructor
-	Student(string studentId, string firstName, string lastName, string email, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
+	Student(string studentId, string firstName, string lastName, string emailAddress, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
 
 	//destructor
 	~Student();
@@ -35,7 +35,7 @@ public:
 	void setStudentId(string studentId);
 	void setFirstName(string firstName);
 	void setLastName(string lastName);
-	void setEmail(string email);
+	void setEmail(string emailAddress);
 	void setAge(int age);
 	void setDegreeProgramString(Degree::DegreeType degree);
 	void setDaysToCompleteCourse(int*);
