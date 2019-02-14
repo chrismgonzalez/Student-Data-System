@@ -58,6 +58,48 @@ Student ** Roster::getClassRosterArray()
 	return classRosterArray;
 }
 
+void Roster::returnStudentData() {
+	for (int i; i < maxStudentsOnRoster; i++) {
+		int tempAge, tempDaysInCourse1, tempDaysInCourse2, tempDaysInCourse3;
+		vector<string> studentDataSplit;
+		string splitByDelimiter;
+		char delimiter = ',';
+		istringstream stringStream(studentData[i]);
+
+		while (getline(stringStream, splitByDelimiter, delimiter)) {
+			cout << splitByDelimiter << endl;
+			studentDataSplit.push_back(splitByDelimiter);
+		}
+
+		Degree::DegreeType tempDegree;
+		string tempDegreeString = studentDataSplit[8];
+
+		if (tempDegreeString == "NETWORKING") {
+			tempDegree = Degree::NETWORKING;
+		}
+
+		if (tempDegreeString == "SOFTWARE") {
+			tempDegree = Degree::SOFTWARE;
+		}
+
+		if (tempDegreeString == "SECURITY") {
+			tempDegree = Degree::SECURITY;
+		}
+
+		else {
+			throw exception("Sorry...the degree type selected did not match with known degrees.  Please check for accuracy and try again.  Check studentData table and DegreeType enumerable");
+		}
+
+		tempAge = stoi(studentDataSplit[4]);
+		tempDaysInCourse1 = stoi(studentDataSplit[5]);
+		tempDaysInCourse2 = stoi(studentDataSplit[6]);
+		tempDaysInCourse3 = stoi(studentDataSplit[7]);
+
+		add(studentDataSplit[0], studentDataSplit[1], studentDataSplit[2], studentDataSplit[3], tempAge, tempDaysInCourse1, tempDaysInCourse2, tempDaysInCourse3, tempDegree);
+
+	}
+}
+
 
 
 
