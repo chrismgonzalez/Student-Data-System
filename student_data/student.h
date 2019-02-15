@@ -39,7 +39,7 @@ public:
 	void setAge(int age);
 	void setDegreeProgramString(Degree::DegreeType degree);
 	void setDaysToCompleteCourse(int*);
-	void resetStudent();
+	
 
 	virtual Degree::DegreeType getDegreeProgram();
 	virtual void print();

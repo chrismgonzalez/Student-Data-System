@@ -49,8 +49,8 @@ void Student::setDegreeProgramString(Degree::DegreeType degree) {
 		this->degreeProgramString = "SECURITY";
 		break;
 
-	case Degree::NETWORK:
-		this->degreeProgramString = "NETWORK";
+	case Degree::NETWORKING:
+		this->degreeProgramString = "NETWORKING";
 		break;
 
 	case Degree::SOFTWARE:
