@@ -1,14 +1,24 @@
 #pragma once
-#include <string>
+#ifndef SOFTWARESTUDENT_H
+#define SOFTWARESTUDENT_H
+
 #include "student.h"
-#include "degree.h"
 
 class SoftwareStudent : public Student {
+
 public:
-		SoftwareStudent(string studentId, string firstName, string lastName, string email, int age, int *daysToCompleteCourse);
-		Degree::DegreeType getDegreeProgram() override;
+
+	SoftwareStudent();
+
+	SoftwareStudent(string studentId, string firstName, string lastName, string emailAddress, int age, int* daysToCompleteCourse, Degree);
+	Degree getDegree() override;
+
+	void print();
 
 private:
-	Degree::DegreeType degreeType;
+	Degree degree;
 };
+
+
+#endif //SOFTWARESTUDENT_H
 

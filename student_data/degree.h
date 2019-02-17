@@ -1,9 +1,5 @@
 #pragma once
 
-class Degree {
-public: 
-	enum DegreeType
-	{
-		SECURITY, NETWORKING, SOFTWARE, OTHER
-	};
+enum class Degree : int {
+	SECURITY, NETWORK, SOFTWARE
 };

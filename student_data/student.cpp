@@ -5,117 +5,86 @@
 #include "student.h"
 using namespace std;
 
-Student::Student(string studentId, std::string firstName, std::string lastName, std::string emailAddress, int age, int *daysToCompleteCourse, Degree::DegreeType degree)
+Student::Student()
 {
-	this->setStudentId(studentId);
-	this->setFirstName(firstName);
-	this->setLastName(lastName);
-	this->setEmail(emailAddress);
-	this->setAge(age);
-	this->setDaysToCompleteCourse(daysToCompleteCourse);
-	this->setDegreeProgramString(degree);
+
 }
 
-Student::~Student()
+Student::Student(string studentId, string firstName, string lastName, string emailAddress, int age, int* daysToCompleteCourse)
 {
+	studentId = studentId;
+	firstName = firstName;
+	lastName = lastName;
+	emailAddress = emailAddress;
+	age = age;
+	daysToCompleteCourse[0] = daysToCompleteCourse[0];
+	daysToCompleteCourse[1] = daysToCompleteCourse[1];
+	daysToCompleteCourse[2] = daysToCompleteCourse[2];
 }
 
 void Student::setStudentId(string studentId) {
-	this->studentId = studentId;
+	studentId = studentId;
 }
 
 void Student::setFirstName(string firstName) {
-	this->firstName = firstName;
+	firstName = firstName;
 }
 
 void Student::setLastName(string lastName) {
-	this->lastName;
+	lastName = lastName;
 }
 
 void Student::setEmail(string email) {
-	this->emailAddress;
+	emailAddress = email;
 }
 
 void Student::setAge(int age) {
-	this->age = age;
+	age = age;
 }
 
-void Student::setDegreeProgramString(Degree::DegreeType degree) {
-	this->degreeProgramString = degree;
-
-	switch (degree)
-	{
-	case Degree::SECURITY:
-		this->degreeProgramString = "SECURITY";
-		break;
-
-	case Degree::NETWORKING:
-		this->degreeProgramString = "NETWORKING";
-		break;
-
-	case Degree::SOFTWARE:
-		this->degreeProgramString = "SOFTWARE";
-		break;
-
-	case Degree::OTHER:
-		this->degreeProgramString = "OTHER";
-		break;
-
-	default:
-		break;
-	}
-
+void Student::setDaysToCompleteCourse(int day0, int day1, int day2) {
+	Student::daysToCompleteCourse[0] = day0;
+	Student::daysToCompleteCourse[1] = day1;
+	Student::daysToCompleteCourse[2] = day2;
 }
 
-void Student::setDaysToCompleteCourse(int *daysToCompleteCourse) {
-	for (int i = 0; i < 3; i++) {
-		this->daysToCompleteCourse[i] = daysToCompleteCourse[i];
-	}
+void Student::setDegree(string degree) {
+	degree = degree;
+}
+
+Degree Student::getDegree() {
+	return Degree::SOFTWARE;
 }
 
 string Student::getStudentId() {
-	return this->studentId;
+	return studentId;
 }
 
 string Student::getFirstName() {
-	return this->firstName;
+	return firstName;
 }
 
 string Student::getLastName() {
-	return this->lastName;
+	return lastName;
 }
 
 string Student::getEmail() {
-	return this->emailAddress;
-}
-
-string Student::getDegreeProgramString() {
-	return this->degreeProgramString;
+	return emailAddress;
 }
 
 int Student::getAge() {
-	return this->age;
+	return age;
 }
 int *Student::getDaysToCompleteCourse() {
-	return this->daysToCompleteCourse;
-}
-
-Degree::DegreeType Student::getDegreeProgram() {
-	return Degree::OTHER;
+	return daysToCompleteCourse;
 }
 
 void Student::print() {
 
-	int* days = getDaysToCompleteCourse();
-
-	cout << "Student ID:" << getStudentId() << "\t";
-	cout << "Student First Name: " << getFirstName() << "\t";
-	cout << "Student Last Name: " << getLastName() << "\t";
-	cout << "Student Age: " << getAge() << "\t";
-	cout << "\t Days in each enrolled course: " << days[0] << "," << days[1] << "," << days[2] << "\t";
-	cout << "Student Degree Program: " << getDegreeProgramString();
-	cout << endl;
 }
 
 
+Student::~Student()
+{
 
+}

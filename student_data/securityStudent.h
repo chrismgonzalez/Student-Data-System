@@ -1,15 +1,25 @@
 #pragma once
-#include <string>
+#ifndef SECURITYSTUDENT_H
+#define SECURITYSTUDENT_H
+
 #include "student.h"
-#include "degree.h"
 
 class SecurityStudent : public Student {
+
 public:
-	SecurityStudent(string studentId, string firstName, string LastName, string email, int age, int *daysToCompleteCourse);
-	Degree::DegreeType getDegreeProgram() override;
+
+	SecurityStudent();
+
+	SecurityStudent(string studentId, string firstName, string lastName, string emailAddress, int age, int* daysToCompleteCourse, Degree);
+	Degree getDegree() override;
+
+	void print();
 
 private:
-	Degree::DegreeType degreeType;
+	Degree degree;
 };
+
+
+#endif //SECURITYSTUDENT_H
 
 

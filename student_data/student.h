@@ -1,32 +1,38 @@
 #pragma once
+
+#ifndef STUDENT_H_
+#define STUDENT_h_
+
 #include <string>
 #include "degree.h"
-using std::string;
+using namespace std;
 
 class Student {
+
+	
+
 private:
 	string studentId;
 	string firstName;
 	string lastName;
 	string emailAddress;
-	string degreeProgramString;
-	Degree::DegreeType degree;
+	string degree;
 	int age;
 	int daysToCompleteCourse[3];
 
 public:
-	//constructor
-	Student(string studentId, string firstName, string lastName, string emailAddress, int age, int *daysToCompleteCourse, Degree::DegreeType degree);
 
-	//destructor
-	~Student();
+	//constructors
 
+	Student();
+
+	Student(string studentId, string firstName, string lastName, string emailAddress, int age, int* daysToCompleteCourse);
+	
 	//getters
 	string getStudentId();
 	string getFirstName();
 	string getLastName();
 	string getEmail();
-	string getDegreeProgramString();
 	int getAge();
 	int *getDaysToCompleteCourse();
 
@@ -37,14 +43,19 @@ public:
 	void setLastName(string lastName);
 	void setEmail(string emailAddress);
 	void setAge(int age);
-	void setDegreeProgramString(Degree::DegreeType degree);
-	void setDaysToCompleteCourse(int*);
+	void setDaysToCompleteCourse(int day0, int day1, int day2);
+	void setDegree(string degree);
 	
 
-	virtual Degree::DegreeType getDegreeProgram();
 	virtual void print();
+
+	//destructor
+	~Student();
+
+	virtual Degree getDegree();
 };
 
 
+#endif //STUDENT_H_
 
 

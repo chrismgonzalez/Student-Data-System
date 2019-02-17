@@ -2,14 +2,21 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 #include "student.h"
+#include "degree.h"
 #include "networkStudent.h"
 #include "softwareStudent.h"
 #include "securityStudent.h"
 #include "roster.h"
+
 using namespace std;
 
+//main function
 int main() {
+
+	//personal information
+
 	cout << "######################################################################" << endl;
 	cout << "##                                                                  ##" << endl;
 	cout << "##   COURSE TITLE: Scripting and Programming: Applications - C867   ##" << endl;
@@ -19,194 +26,195 @@ int main() {
 	cout << "##                                                                  ##" << endl;
 	cout << "######################################################################" << endl;
 
+
 	//initialize instance of the class roster
-	Roster classRoster;
+	Roster roster;
 
-	
-	classRoster.printStudentData();
-	classRoster.printAll();
-	classRoster.printInvalidEmails();
+	//instance of degree
+	Degree studentDegree;
 
-	for (int i = 0; i < maxStudentsOnRoster; i++) {
-		classRoster.printDaysInCourse(classRoster.getClassRosterArray()[i]->getStudentId());
+	//add students to roster
+
+	for (int i = 0; i < 5; i++) {
+		stringstream ss(studentData[i]);
+
+		vector<string> result;
+
+		while (ss.good()) {
+			string substr;
+			getline(ss, substr, ',');
+			result.push_back(substr);
+		}
+
+		if (result[8] == "SECURITY") {
+			studentDegree = Degree::SECURITY;
+		}
+
+		if (result[8] == "NETWORK") {
+			studentDegree = Degree::NETWORK;
+		}
+
+		if (result[8] == "SOFTWARE") {
+			studentDegree = Degree::SOFTWARE;
+		}
+
+		roster.add(result[0], result[1], result[2], result[3], stoi(result[4]), stoi(result[5]), stoi(result[6]), stoi(result[7]), studentDegree);
 	}
+	
+	
+	//print all students
+	roster.printAll();
+
+	//print invalid emails
+	roster.printInvalidEmails();
+
+	//print days left in course for selected student
+	roster.printDaysLeftInCourse("A1");
+	
 	//print all students in a specified degree program
-	classRoster.printByDegreeProgram(Degree::SOFTWARE);
+	roster.printByDegree("SOFTWARE");
 
 	//remove student with id submitted as argument
-	classRoster.remove("A3");
+	roster.remove("A3");
 	//calling already a student already removed from the data table will throw error
-	classRoster.remove("A3");
-	//print all students in classRoster 
-	classRoster.printAll();
-
-	//call the destructor
-	classRoster.~Roster();
+	roster.remove("A3");
 	
-	return 0;
 
 };
+
+//helper functions
 
 Roster::Roster() {
 }
 
-Roster::~Roster() {
-}
-
-Student ** Roster::getClassRosterArray()
-{
-	return classRosterArray;
-}
-
-void Roster::printStudentData() {
-	for (int i = 0; i < maxStudentsOnRoster; i++) {
-		int tempAge, tempDaysInCourse1, tempDaysInCourse2, tempDaysInCourse3;
-		vector<string> studentDataSplit;
-		string splitByDelimiter;
-		char delimiter = ',';
-		istringstream stringStream(studentData[i]);
-
-		while (getline(stringStream, splitByDelimiter, delimiter)) {
-			cout << splitByDelimiter << endl;
-			studentDataSplit.push_back(splitByDelimiter);
-		}
-
-		Degree::DegreeType tempDegree;
-		string tempDegreeString = studentDataSplit[8];
-
-		if (tempDegreeString == "NETWORKING") {
-			tempDegree = Degree::NETWORKING;
-		}
-		else if (tempDegreeString == "SECURITY") {
-			tempDegree = Degree::SECURITY;
-		}
-		else if (tempDegreeString == "SOFTWARE") {
-			tempDegree = Degree::SOFTWARE;
-		}
-		else {
-			throw exception("Degree type did not match known degree types. Check studentData table and DegreeType enum.");
-		}
-
-		tempAge = stoi(studentDataSplit[4]);
-		tempDaysInCourse1 = stoi(studentDataSplit[5]);
-		tempDaysInCourse2 = stoi(studentDataSplit[6]);
-		tempDaysInCourse3 = stoi(studentDataSplit[7]);
-
-		add(studentDataSplit[0], studentDataSplit[1], studentDataSplit[2], studentDataSplit[3], tempAge,
-			tempDaysInCourse1, tempDaysInCourse2, tempDaysInCourse3, tempDegree);
-	}
-}
-
-void Roster::remove(string studentId) 
-{
-	cout << "==> Attempting to remove student from classRosterArray with ID: " << studentId << endl;
-	for (int i = 0; i < maxStudentsOnRoster; i++) {
-		if (classRosterArray[i] != nullptr) {
-			if (classRosterArray[i]->getStudentId() == studentId) {
-				classRosterArray[i] = nullptr;
-				cout << "==> Removed student with ID: " << studentId << endl;
-				return;
-			}
-		}
-	}
-
-	cout << "Student not found, did you enter the ID number correctly?" << endl;
-}
-
-void Roster::printAll()
-{
-	cout << "Printing student data..." << endl;
-	for (int i = 0; i < maxStudentsOnRoster; i++) {
-		if (classRosterArray[i] != nullptr) {
-			classRosterArray[i]->print();
-		}
-	}
-
-	cout << "Student data successfully printed..." << endl;
-}
-
-void Roster::printDaysInCourse(string studentId)
-{
-	for (int i = 0; i < maxStudentsOnRoster; i++) {
-		if (classRosterArray[i]->getStudentId() == studentId) {
-			int* tempDays = classRosterArray[i]->getDaysToCompleteCourse();
-			int averageDays = (tempDays[0] + tempDays[1] + tempDays[2]) / 3;
-			cout << "The average number of days in class for student with the ID of " << studentId << " is: " << averageDays << "\n" << endl;
-			break;
-		}
-	}
-}
-
-void Roster::printInvalidEmails()
-{
-	vector<string> invalidEmails;
-	for (int i = 0; i < maxStudentsOnRoster; i++) {
-		string tempEmail = classRosterArray[i]->getEmail();
-		bool hasSpace = false;
-		bool hasAtChar = tempEmail.find("@") != string::npos;
-		bool hasPeriodChar = tempEmail.find(".") != string::npos;
-
-		for (char c : tempEmail) {
-			if (isspace(c)) {
-				hasSpace = true;
-				break;
-			}
-		}
-
-		bool emailValid = hasAtChar && hasPeriodChar && !hasSpace;
-
-		if (!emailValid) {
-			invalidEmails.push_back(tempEmail);
-		}
-	}
-
-	if (invalidEmails.size() > 0) {
-		cout << "Found invalid emails: \n" << endl;
-		for (string invalidEmail : invalidEmails) {
-			cout << invalidEmail << "\n" << endl;
-		}
-	}
-}
-
-
-
-void Roster::printByDegreeProgram(Degree::DegreeType degreeProgram)
-{
-	for (int i = 0; i < maxStudentsOnRoster; i++) {
-		Degree::DegreeType currentDegreeProgram = classRosterArray[i]->getDegreeProgram();
-
-		if (currentDegreeProgram == degreeProgram) {
-			cout << classRosterArray[i]->getDegreeProgramString() << " program student has been found: ";
-			classRosterArray[i]->print();
-			cout << "\n" << endl;
-		}
-	}
-}
-
+//add student to roster
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress,
-	int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree::DegreeType degreeProgram) {
-	if (rosterStudentIndex < maxStudentsOnRoster) {
-		int tempDaysInCourse[3] = { daysInCourse1, daysInCourse2, daysInCourse3 };
-		switch (degreeProgram)
+	int age, int day0, int day1, int day2, Degree degree) {
+	int daysToCompleteCourse[] = { day0, day1, day2 };
+	
+		switch (degree)
 		{
 		case Degree::SECURITY:
-			classRosterArray[rosterStudentIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, tempDaysInCourse);
-			rosterStudentIndex++;
+			classRosterArray[addIndex++] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
 			break;
-		case Degree::NETWORKING:
-			classRosterArray[rosterStudentIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, tempDaysInCourse);
-			rosterStudentIndex++;
+
+		case Degree::NETWORK:
+			classRosterArray[addIndex++] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
 			break;
+
 		case Degree::SOFTWARE:
-			classRosterArray[rosterStudentIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, tempDaysInCourse);
-			rosterStudentIndex++;
+			classRosterArray[addIndex++] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
 			break;
+
+		default: "Sorry...unable to enter student.  Please check that student data was entered in the correct format";
+		}
+	
+}
+
+//print all students
+void Roster::printAll()
+{
+	cout << "****STUDENT ROSTER****" << endl;
+	cout << endl;
+
+	for (int i = 0; i < 5; i++) {
+		(*classRosterArray[i]).print();
+	}
+
+	cout << "Student data printed successfully" << endl;
+}
+
+//print the average days it took for a student to complete 3 courses
+void Roster::printDaysLeftInCourse(string studentId)
+{
+	for (int i = 0; i < 5; i++) {
+		if ((*classRosterArray[i]).getStudentId() == studentId) {
+			int average = 0;
+			average = ((*classRosterArray[i]).getDaysToCompleteCourse()[0] + (*classRosterArray[i]).getDaysToCompleteCourse()[1]
+				+ (*classRosterArray[i]).getDaysToCompleteCourse()[2]) / 3;
+			cout << "The average days it took the student with studentID: " << studentId << " to finish 3 courses: " << average << '\n';
 		}
 	}
-	else {
-		throw exception("Sorry...the amount of lines used exceeds the size that the class roster can hold");
+	cout << '\n';
+}
+
+//print students by degree program
+void Roster::printByDegree(string degree)
+{
+	Degree currentDegree = Degree::SOFTWARE;
+
+	if (degree == "SECURITY") {
+		currentDegree = Degree::SECURITY;
+		cout << "Here are the students in the Security degree program: " << endl;
+	}
+
+	if (degree == "NETWORK") {
+		currentDegree = Degree::NETWORK;
+		cout << "Here are the students in the Network degree program: " << endl;
+	}
+
+	if (degree == "SOFTWARE") {
+		currentDegree = Degree::SOFTWARE;
+		cout << "Here are the students in the Software degree program: " << endl;
+	}
+
+	cout << endl;
+	for (int i = 0; i < 5; i++) {
+
+		if (currentDegree == (*classRosterArray[i]).getDegree()) {
+			(*classRosterArray[i]).print();
+		
+			cout << '\n' << endl;
+		}
+	}
+	cout << '\n';
+}
+//print invalid emails
+void Roster::printInvalidEmails()
+{
+	cout << "Displaying invalid emails:" << '\n';
+		cout << endl;
+		for (int i = 0; i < 5; i++) {
+			bool foundCharAt = false;
+			bool foundCharPeriod = false;
+			bool foundCharSpace = false;
+			string email = "";
+			email = (*classRosterArray[i]).getEmail();
+			for (char &c : email) {
+				if (c == '@') {
+					foundCharAt = true;
+				}
+				if (c == '.') {
+					foundCharPeriod = true;
+				}
+				if (c == ' ') {
+					foundCharSpace = true;
+				}
+			}
+			if (foundCharAt == false || foundCharPeriod == false || foundCharSpace == true) {
+				cout << (*classRosterArray[i]).getEmail() << '\n';
+			}
+		}
+	cout << '\n';
+}
+
+
+//remove a student from the roster
+void Roster::remove(string studentID) {
+	bool removed = false;
+	for (int i = 0; i < 5; i++) {
+		if (classRosterArray[i] != NULL) {
+			if (studentID == classRosterArray[i]->getStudentId()) {
+				classRosterArray[i] = nullptr;
+				removed = true;
+			}
+		}
+	}
+	if (!removed) {
+		cout << "The student with the ID: " << studentID << " was not found." << '\n';
 	}
 }
 
 
-
+//call the destructor
+Roster::~Roster() {};
