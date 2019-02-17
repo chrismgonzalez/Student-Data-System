@@ -5,6 +5,7 @@
 #include <array>
 #include "student.h"
 
+
 //student data
 const string studentData[] = {
 		"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -18,7 +19,7 @@ class Roster {
 public:
 	Roster();
 
-	virtual ~Roster();
+	
 
 	void printAll();
 	void add(string studentId, string firstName, string lastName, string emailAddress, int age, int day0, int day1, int day2, Degree);
@@ -39,9 +40,15 @@ public:
 	void printByDegreeProgram(Degree::DegreeType degreeProgram);
 	void add(string studentId, string firstName, string lastName, string emailAddress, int age, int DaysInCourse1, int DaysInCourse2, int DaysInCourse3, Degree::DegreeType degreeProgram);*/
 
+	virtual ~Roster();
+
 private:
 	Student *classRosterArray[5];
+
+	
 };
+
+
 
 #endif // !ROSTER_H
 

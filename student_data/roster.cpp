@@ -26,6 +26,7 @@ int main() {
 	cout << "##                                                                  ##" << endl;
 	cout << "######################################################################" << endl;
 
+	
 
 	//initialize instance of the class roster
 	Roster roster;
@@ -118,7 +119,7 @@ void Roster::printAll()
 	cout << endl;
 
 	for (int i = 0; i < 5; i++) {
-		(*classRosterArray[i]).print();
+		classRosterArray[i]->print();
 	}
 
 	cout << "Student data printed successfully" << endl;
