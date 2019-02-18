@@ -12,76 +12,7 @@
 
 using namespace std;
 
-//main function
-int main() {
 
-	//personal information
-
-	cout << "######################################################################" << endl;
-	cout << "##                                                                  ##" << endl;
-	cout << "##   COURSE TITLE: Scripting and Programming: Applications - C867   ##" << endl;
-	cout << "##                    PROGRAMMING LANGUAGE: C++                     ##" << endl;
-	cout << "##                     STUDENT I.D.: 001104301                      ##" << endl;
-	cout << "##                      NAME: Chris Gonzalez                        ##" << endl;
-	cout << "##                                                                  ##" << endl;
-	cout << "######################################################################" << endl;
-
-	
-
-	//initialize instance of the class roster
-	Roster roster;
-
-	//instance of degree
-	Degree studentDegree;
-
-	//add students to roster
-
-	for (int i = 0; i < 5; i++) {
-		stringstream ss(studentData[i]);
-
-		vector<string> result;
-
-		while (ss.good()) {
-			string substr;
-			getline(ss, substr, ',');
-			result.push_back(substr);
-		}
-
-		if (result[8] == "SECURITY") {
-			studentDegree = Degree::SECURITY;
-		}
-
-		if (result[8] == "NETWORK") {
-			studentDegree = Degree::NETWORK;
-		}
-
-		if (result[8] == "SOFTWARE") {
-			studentDegree = Degree::SOFTWARE;
-		}
-
-		roster.add(result[0], result[1], result[2], result[3], stoi(result[4]), stoi(result[5]), stoi(result[6]), stoi(result[7]), studentDegree);
-	}
-	
-	
-	//print all students
-	roster.printAll();
-
-	//print invalid emails
-	roster.printInvalidEmails();
-
-	//print days left in course for selected student
-	roster.printDaysLeftInCourse("A1");
-	
-	//print all students in a specified degree program
-	roster.printByDegree("SOFTWARE");
-
-	//remove student with id submitted as argument
-	roster.remove("A3");
-	//calling already a student already removed from the data table will throw error
-	roster.remove("A3");
-	
-
-};
 
 //helper functions
 
@@ -92,25 +23,24 @@ Roster::Roster() {
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress,
 	int age, int day0, int day1, int day2, Degree degree) {
 	int daysToCompleteCourse[] = { day0, day1, day2 };
+
 	
-		switch (degree)
-		{
-		case Degree::SECURITY:
-			classRosterArray[addIndex++] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
-			break;
 
-		case Degree::NETWORK:
-			classRosterArray[addIndex++] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
-			break;
+	if (degree == Degree::SECURITY) {
+		classRosterArray[addIndex++] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
+	}
 
-		case Degree::SOFTWARE:
-			classRosterArray[addIndex++] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
-			break;
+	if (degree == Degree::NETWORK) {
+		classRosterArray[addIndex++] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
+	}
 
-		default: "Sorry...unable to enter student.  Please check that student data was entered in the correct format";
-		}
-	
+	if (degree == Degree::SOFTWARE) {
+		classRosterArray[addIndex++] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, daysToCompleteCourse, degree);
+	}
+
 }
+	
+
 
 //print all students
 void Roster::printAll()
@@ -119,7 +49,7 @@ void Roster::printAll()
 	cout << endl;
 
 	for (int i = 0; i < 5; i++) {
-		classRosterArray[i]->print();
+		(*classRosterArray[i]).print();
 	}
 
 	cout << "Student data printed successfully" << endl;
@@ -216,6 +146,86 @@ void Roster::remove(string studentID) {
 	}
 }
 
+
+//main function
+int main() {
+
+	//personal information
+
+	cout << "######################################################################" << endl;
+	cout << "##                                                                  ##" << endl;
+	cout << "##   COURSE TITLE: Scripting and Programming: Applications - C867   ##" << endl;
+	cout << "##                    PROGRAMMING LANGUAGE: C++                     ##" << endl;
+	cout << "##                     STUDENT I.D.: 001104301                      ##" << endl;
+	cout << "##                      NAME: Chris Gonzalez                        ##" << endl;
+	cout << "##                                                                  ##" << endl;
+	cout << "######################################################################" << endl;
+
+	//student data
+	const string studentData[] = {
+			"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
+			"A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
+			"A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
+			"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
+			"A5,Chris,Gonzalez,cmgonza89@gmail.com,29,20,25,30,SOFTWARE",
+	};
+
+
+
+	//initialize instance of the class roster
+	Roster roster;
+
+	//instance of degree
+	Degree studentDegree;
+
+	//add students to roster
+
+	for (int i = 0; i < 5; i++) {
+		stringstream ss(studentData[i]);
+
+		vector<string> result;
+
+		while (ss.good()) {
+			string substr;
+			getline(ss, substr, ',');
+			result.push_back(substr);
+		}
+
+		if (result[8] == "SECURITY") {
+			studentDegree = Degree::SECURITY;
+		}
+
+		if (result[8] == "NETWORK") {
+			studentDegree = Degree::NETWORK;
+		}
+
+		if (result[8] == "SOFTWARE") {
+			studentDegree = Degree::SOFTWARE;
+		}
+
+		roster.add(result[0], result[1], result[2], result[3], stoi(result[4]), stoi(result[5]), stoi(result[6]), stoi(result[7]), studentDegree);
+	}
+
+
+	//print all students
+	roster.printAll();
+
+	//print invalid emails
+	roster.printInvalidEmails();
+
+	//print days left in course for selected student
+	roster.printDaysLeftInCourse("A1");
+
+	//print all students in a specified degree program
+	roster.printByDegree("SOFTWARE");
+
+	//remove student with id submitted as argument
+	roster.remove("A3");
+	//calling already a student already removed from the data table will throw error
+	roster.remove("A3");
+
+
+};
 
 //call the destructor
 Roster::~Roster() {};

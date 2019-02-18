@@ -1,90 +1,108 @@
-#pragma once
 #include <iostream>
-#include <string>
-#include "degree.h"
 #include "student.h"
-using namespace std;
 
+/* Constructors */
 Student::Student()
+	: studentId(""), firstName(""), lastName(""), emailAddress(""), age(-1), daysInCourse(new int[daysInCourseArraySize])
 {
-
+	for (int i = 0; i < daysInCourseArraySize; ++i) {
+		this->daysInCourse[i] = 0;
+	}
 }
 
-Student::Student(string studentId, string firstName, string lastName, string emailAddress, int age, int* daysToCompleteCourse)
+Student::Student(string studentId, string firstName, string lastName, string email, int age, int daysInCourse[], Degree degree)
+	: studentId(studentId), firstName(firstName), lastName(lastName), emailAddress(email), age(age), daysInCourse(new int[daysInCourseArraySize])
 {
-	studentId = studentId;
-	firstName = firstName;
-	lastName = lastName;
-	emailAddress = emailAddress;
-	age = age;
-	daysToCompleteCourse[0] = daysToCompleteCourse[0];
-	daysToCompleteCourse[1] = daysToCompleteCourse[1];
-	daysToCompleteCourse[2] = daysToCompleteCourse[2];
+	for (int i = 0; i < daysInCourseArraySize; ++i) {
+		this->daysInCourse[i] = daysInCourse[i];
+	}
 }
 
+/* Setters */
 void Student::setStudentId(string studentId) {
-	studentId = studentId;
+	this->studentId = studentId;
 }
 
 void Student::setFirstName(string firstName) {
-	firstName = firstName;
+	this->firstName = firstName;
 }
 
 void Student::setLastName(string lastName) {
-	lastName = lastName;
+	this->lastName = lastName;
 }
 
 void Student::setEmail(string email) {
-	emailAddress = email;
+	this->emailAddress = email;
 }
 
 void Student::setAge(int age) {
-	age = age;
+	this->age = age;
 }
 
-void Student::setDaysToCompleteCourse(int day0, int day1, int day2) {
-	Student::daysToCompleteCourse[0] = day0;
-	Student::daysToCompleteCourse[1] = day1;
-	Student::daysToCompleteCourse[2] = day2;
+void Student::setDaysInCourse(int daysInCourse[]) {
+	this->daysInCourse = new int[daysInCourseArraySize];
+	for (int i = 0; i < daysInCourseArraySize; ++i) this->daysInCourse[i] = daysInCourse[i];
 }
 
-void Student::setDegree(string degree) {
-	degree = degree;
+void Student::setDegree(Degree degree) {
+	this->degree = degree;
 }
 
-Degree Student::getDegree() {
-	return Degree::SOFTWARE;
-}
-
-string Student::getStudentId() {
+/* Getters */
+string Student::getStudentId() const {
 	return studentId;
 }
 
-string Student::getFirstName() {
+string Student::getFirstName() const {
 	return firstName;
 }
 
-string Student::getLastName() {
+string Student::getLastName() const {
 	return lastName;
 }
 
-string Student::getEmail() {
+string Student::getEmail() const {
 	return emailAddress;
 }
 
-int Student::getAge() {
+int Student::getAge() const {
 	return age;
 }
-int *Student::getDaysToCompleteCourse() {
-	return daysToCompleteCourse;
+
+int* Student::getDaysInCourse() const {
+	return daysInCourse;
 }
 
+Degree Student::getDegree() {
+	return degree;
+}
+
+/* Print */
 void Student::print() {
+	std::cout << getStudentId();
+	std::cout << "\tFirst name: " << getFirstName();
+	std::cout << "\tLast name: " << getLastName();
+	std::cout << "\tAge: " << getAge();
 
+	int* days = getDaysInCourse();
+	std::cout << "\t  Days in course: " << days[0] << ", " << days[1] << ", " << days[2];
+
+	string degreeString = "";
+	switch (getDegree()) {
+	case NETWORK:
+		degreeString = "NETWORK";
+		break;
+	case SECURITY:
+		degreeString = "SECURITY";
+		break;
+	case SOFTWARE:
+		degreeString = "SOFTWARE";
+		break;
+	}
+	std::cout << "\tDegree: " << degreeString << std::endl;
 }
 
-
-Student::~Student()
-{
+/* Destructor */
+Student::~Student() {
 
 }

@@ -16,9 +16,9 @@ private:
 	string firstName;
 	string lastName;
 	string emailAddress;
-	string degree;
 	int age;
-	int daysToCompleteCourse[3];
+	int* daysInCourse;
+	Degree degree;
 
 public:
 
@@ -26,15 +26,16 @@ public:
 
 	Student();
 
-	Student(string studentId, string firstName, string lastName, string emailAddress, int age, int* daysToCompleteCourse);
+	Student(string studentId, string firstName, string lastName, string emailAddress, int age, int daysInCourse[], Degree degree);
+	const static int daysInCourseArraySize = 3;
 	
 	//getters
-	string getStudentId();
-	string getFirstName();
-	string getLastName();
-	string getEmail();
-	int getAge();
-	int *getDaysToCompleteCourse();
+	string getStudentId() const;
+	string getFirstName() const;
+	string getLastName() const;
+	string getEmail() const;	
+	int getAge() const;
+	int *getDaysInCourse() const;
 
 	//setters
 
@@ -43,16 +44,17 @@ public:
 	void setLastName(string lastName);
 	void setEmail(string emailAddress);
 	void setAge(int age);
-	void setDaysToCompleteCourse(int day0, int day1, int day2);
-	void setDegree(string degree);
+	void setDaysInCourse(int daysInCourse[]);
+	void setDegree(Degree degree);
 	
+
+
+
+	virtual Degree getDegree() = 0;
 
 	virtual void print();
 
-	//destructor
 	~Student();
-
-	virtual Degree getDegree();
 };
 
 
