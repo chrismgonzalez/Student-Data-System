@@ -12,7 +12,7 @@ Degree NetworkStudent::getDegree() {
 }
 
 void NetworkStudent::print() {
-	cout << "\t" << "First Name: " << getFirstName() << "\t" << "Last Name: " << getLastName() << "\t" << "Age: " << getAge()
-		<< "\t" << "daysInCourse: {"; cout << getDaysInCourse()[0] << ", " << getDaysInCourse()[1] << ", " << getDaysInCourse()[2] << "}";
-	cout << " Degree Program: Networking" << '\n';
+	cout << "\t" << "First Name: " << getFirstName() << "\t" << "Last Name: " << getLastName() << "\t" << "Age: " << getAge() << "\t"
+		<< "Days In Course: {"; cout << getDaysInCourse()[0] << ", " << getDaysInCourse()[1] << ", " << getDaysInCourse()[2] << "}" << "\t";
+	cout << "Degree Program: Network" << '\n';
 }

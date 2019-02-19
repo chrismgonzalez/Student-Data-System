@@ -16,7 +16,7 @@ public:
 	void add(string studentId, string firstName, string lastName, string emailAddress, int age, int day0, int day1, int day2, Degree);
 	void remove(string studentId);
 	void printByDegree(string degree);
-	void printDaysLeftInCourse(string);
+	void printAverageDaysInCourse(string);
 	void printInvalidEmails();
 	int addIndex = 0;
 

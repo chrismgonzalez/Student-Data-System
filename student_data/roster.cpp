@@ -51,19 +51,19 @@ void Roster::printAll()
 	for (int i = 0; i < 5; i++) {
 		(*classRosterArray[i]).print();
 	}
-
-	cout << "Student data printed successfully" << endl;
+	cout << endl;
+	cout << endl;
 }
 
 //print the average days it took for a student to complete 3 courses
-void Roster::printDaysLeftInCourse(string studentId)
+void Roster::printAverageDaysInCourse(string studentId)
 {
 	for (int i = 0; i < 5; i++) {
 		if ((*classRosterArray[i]).getStudentId() == studentId) {
 			int average = 0;
 			average = ((*classRosterArray[i]).getDaysInCourse()[0] + (*classRosterArray[i]).getDaysInCourse()[1]
 				+ (*classRosterArray[i]).getDaysInCourse()[2]) / 3;
-			cout << "The average days it took the student with studentID: " << studentId << " to finish 3 courses: " << average << '\n';
+			cout << "The average days it took the student with the student ID of " << studentId << " to finish 3 courses was " << average << " days. \n";
 		}
 	}
 	cout << '\n';
@@ -103,8 +103,10 @@ void Roster::printByDegree(string degree)
 //print invalid emails
 void Roster::printInvalidEmails()
 {
-	cout << "Displaying invalid emails:" << '\n';
-		cout << endl;
+	cout << "*****INVALID EMAILS*****" << '\n';
+
+	cout << endl;
+
 		for (int i = 0; i < 5; i++) {
 			bool foundCharAt = false;
 			bool foundCharPeriod = false;
@@ -138,11 +140,12 @@ void Roster::remove(string studentID) {
 			if (studentID == classRosterArray[i]->getStudentId()) {
 				classRosterArray[i] = nullptr;
 				removed = true;
+				cout << "Student with the ID " << studentID << " was removed" << endl;
 			}
 		}
 	}
 	if (!removed) {
-		cout << "The student with the ID: " << studentID << " was not found." << '\n';
+		cout << "The student with the ID " << studentID << " was not found." << '\n';
 	}
 }
 
@@ -160,6 +163,7 @@ int main() {
 	cout << "##                      NAME: Chris Gonzalez                        ##" << endl;
 	cout << "##                                                                  ##" << endl;
 	cout << "######################################################################" << endl;
+	cout << endl;
 
 	//student data
 	const string studentData[] = {
@@ -214,7 +218,7 @@ int main() {
 	roster.printInvalidEmails();
 
 	//print days left in course for selected student
-	roster.printDaysLeftInCourse("A1");
+	roster.printAverageDaysInCourse("A1");
 
 	//print all students in a specified degree program
 	roster.printByDegree("SOFTWARE");
