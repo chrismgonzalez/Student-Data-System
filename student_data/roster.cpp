@@ -61,8 +61,8 @@ void Roster::printDaysLeftInCourse(string studentId)
 	for (int i = 0; i < 5; i++) {
 		if ((*classRosterArray[i]).getStudentId() == studentId) {
 			int average = 0;
-			average = ((*classRosterArray[i]).getDaysToCompleteCourse()[0] + (*classRosterArray[i]).getDaysToCompleteCourse()[1]
-				+ (*classRosterArray[i]).getDaysToCompleteCourse()[2]) / 3;
+			average = ((*classRosterArray[i]).getDaysInCourse()[0] + (*classRosterArray[i]).getDaysInCourse()[1]
+				+ (*classRosterArray[i]).getDaysInCourse()[2]) / 3;
 			cout << "The average days it took the student with studentID: " << studentId << " to finish 3 courses: " << average << '\n';
 		}
 	}
@@ -134,7 +134,7 @@ void Roster::printInvalidEmails()
 void Roster::remove(string studentID) {
 	bool removed = false;
 	for (int i = 0; i < 5; i++) {
-		if (classRosterArray[i] != NULL) {
+		if (classRosterArray[i] != nullptr) {
 			if (studentID == classRosterArray[i]->getStudentId()) {
 				classRosterArray[i] = nullptr;
 				removed = true;

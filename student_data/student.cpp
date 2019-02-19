@@ -3,17 +3,17 @@
 
 /* Constructors */
 Student::Student()
-	: studentId(""), firstName(""), lastName(""), emailAddress(""), age(-1), daysInCourse(new int[daysInCourseArraySize])
+	: studentId(""), firstName(""), lastName(""), emailAddress(""), age(-1), daysInCourse(new int[3])
 {
-	for (int i = 0; i < daysInCourseArraySize; ++i) {
+	for (int i = 0; i < 3; ++i) {
 		this->daysInCourse[i] = 0;
 	}
 }
 
 Student::Student(string studentId, string firstName, string lastName, string email, int age, int daysInCourse[], Degree degree)
-	: studentId(studentId), firstName(firstName), lastName(lastName), emailAddress(email), age(age), daysInCourse(new int[daysInCourseArraySize])
+	: studentId(studentId), firstName(firstName), lastName(lastName), emailAddress(email), age(age), daysInCourse(new int[3])
 {
-	for (int i = 0; i < daysInCourseArraySize; ++i) {
+	for (int i = 0; i < 3; ++i) {
 		this->daysInCourse[i] = daysInCourse[i];
 	}
 }
@@ -40,8 +40,8 @@ void Student::setAge(int age) {
 }
 
 void Student::setDaysInCourse(int daysInCourse[]) {
-	this->daysInCourse = new int[daysInCourseArraySize];
-	for (int i = 0; i < daysInCourseArraySize; ++i) this->daysInCourse[i] = daysInCourse[i];
+	this->daysInCourse = new int[3];
+	for (int i = 0; i < 3; ++i) this->daysInCourse[i] = daysInCourse[i];
 }
 
 void Student::setDegree(Degree degree) {
@@ -49,23 +49,23 @@ void Student::setDegree(Degree degree) {
 }
 
 /* Getters */
-string Student::getStudentId() const {
+string Student::getStudentId() {
 	return studentId;
 }
 
-string Student::getFirstName() const {
+string Student::getFirstName() {
 	return firstName;
 }
 
-string Student::getLastName() const {
+string Student::getLastName() {
 	return lastName;
 }
 
-string Student::getEmail() const {
+string Student::getEmail() {
 	return emailAddress;
 }
 
-int Student::getAge() const {
+int Student::getAge() {
 	return age;
 }
 
@@ -89,13 +89,13 @@ void Student::print() {
 
 	string degreeString = "";
 	switch (getDegree()) {
-	case NETWORK:
+	case Degree::NETWORK:
 		degreeString = "NETWORK";
 		break;
-	case SECURITY:
+	case Degree::SECURITY:
 		degreeString = "SECURITY";
 		break;
-	case SOFTWARE:
+	case Degree::SOFTWARE:
 		degreeString = "SOFTWARE";
 		break;
 	}

@@ -26,15 +26,14 @@ public:
 
 	Student();
 
-	Student(string studentId, string firstName, string lastName, string emailAddress, int age, int daysInCourse[], Degree degree);
-	const static int daysInCourseArraySize = 3;
+	Student(string studentId, string firstName, string lastName, string emailAddress, int age, int daysInCourse[3], Degree degree);
 	
 	//getters
-	string getStudentId() const;
-	string getFirstName() const;
-	string getLastName() const;
-	string getEmail() const;	
-	int getAge() const;
+	string getStudentId();
+	string getFirstName();
+	string getLastName();
+	string getEmail();	
+	int getAge();
 	int *getDaysInCourse() const;
 
 	//setters
