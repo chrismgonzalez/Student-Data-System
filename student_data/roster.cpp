@@ -58,6 +58,10 @@ void Roster::printAll()
 //print the average days it took for a student to complete 3 courses
 void Roster::printAverageDaysInCourse(string studentId)
 {
+
+	cout << "****AVERAGE DAYS IN COURSE****" << endl;
+	cout << endl;
+
 	for (int i = 0; i < 5; i++) {
 		if ((*classRosterArray[i]).getStudentId() == studentId) {
 			int average = 0;
@@ -72,6 +76,10 @@ void Roster::printAverageDaysInCourse(string studentId)
 //print students by degree program
 void Roster::printByDegree(string degree)
 {
+
+	cout << "****PRINT BY DEGREE PROGRAM****" << endl;
+	cout << endl;
+
 	Degree currentDegree = Degree::SOFTWARE;
 
 	if (degree == "SECURITY") {

@@ -20,16 +20,6 @@ public:
 	void printInvalidEmails();
 	int addIndex = 0;
 
-	//OLD CODE ********
-	/*Student** getClassRosterArray();
-	int rosterStudentIndex = 0;
-	void printStudentData();
-	void remove(string studentId);
-	void printAll();
-	void printDaysInCourse(string studentId);
-	void printInvalidEmails();
-	void printByDegreeProgram(Degree::DegreeType degreeProgram);
-	void add(string studentId, string firstName, string lastName, string emailAddress, int age, int DaysInCourse1, int DaysInCourse2, int DaysInCourse3, Degree::DegreeType degreeProgram);*/
 
 	virtual ~Roster();
 
